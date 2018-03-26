@@ -10,6 +10,13 @@ var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube"
  *   - add each card's HTML to the page
  */
 
+// Flip cards on click
+var deck = document.querySelector('.deck');
+deck.addEventListener('click', function(e) {
+    var currentCard = e.target;
+    currentCard.parentElement.classList.toggle("flipped");
+});
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
