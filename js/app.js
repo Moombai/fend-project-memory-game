@@ -1,7 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
+var deck = document.querySelector('.deck');
+var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
 
 /*
  * Display the cards on the page
@@ -10,8 +11,25 @@ var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube"
  *   - add each card's HTML to the page
  */
 
+// shuffle the cards
+var shuffledCards = shuffle(cards);
+
+// build the deck
+var allTheCards = shuffledCards.map((card) => `
+<section class="container">
+    <div class="card">
+        <figure class="front"></figure>
+        <figure class="back">
+            <i class="fa ${card}"></i>
+        </figure>
+    </div>
+</section>
+`).join(" ");
+
+// append shuffled deck to html
+deck.innerHTML = allTheCards;
+
 // Flip cards on click
-var deck = document.querySelector('.deck');
 deck.addEventListener('click', function(e) {
     var currentCard = e.target;
     currentCard.parentElement.classList.toggle("flipped");
