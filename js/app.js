@@ -115,7 +115,9 @@ function hideCards() {
     var allFlippedCards = document.querySelectorAll('.flipped');
     for (let card of allFlippedCards) {
         if (!card.classList.contains('matched')) {
-            card.classList.remove("flipped");
+            setTimeout(function() {
+                card.classList.remove("flipped");
+            }, 1000);
         }
     }
 }
