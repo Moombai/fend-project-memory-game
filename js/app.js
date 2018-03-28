@@ -62,12 +62,20 @@ var regex = /\d+-/;
 // set up the event listener for a card. If a card is clicked:
 deck.addEventListener('click', function (e) {
     var currentCard = e.target;
-    // TODO: check that what we clicked was actually a card
+    // TODO: check that what we clicked was actually a card & does not contain matched class
 
     // display the card's symbol
     showCard(currentCard);
     // add the card to a *list* of "open" cards
     addShownCard(currentCard);
+    // if the shownCardsList contains two cards
+    if (shownCardsList.length > 1) {
+        // check to see if the two cards match
+        if (shownCardsList[0] === shownCardsList[1]) {
+        // if the cards do match, lock the cards in the open position
+            addMatchedClass(shownCardsList[0]);
+        }
+    }
 });
 
 function showCard(card) {
@@ -82,4 +90,14 @@ function addShownCard(card) {
     // add card name to shown cards list
     shownCardsList.push(cardName);
     console.log(shownCardsList);
+}
+
+function addMatchedClass(matched){
+    let matchedCards = document.querySelectorAll('.' + matched);
+    // get the parent card element of matched card
+    // add a class of matched
+    for (card of matchedCards) {
+        let matchedParent = card.closest('.card');
+        matchedParent.classList.add("matched");
+    }
 }
