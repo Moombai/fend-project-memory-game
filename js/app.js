@@ -74,6 +74,10 @@ deck.addEventListener('click', function (e) {
         if (shownCardsList[0] === shownCardsList[1]) {
         // if the cards do match, lock the cards in the open position
             addMatchedClass(shownCardsList[0]);
+        } else {
+            console.log("cards do not match!");
+            // if the cards do not match, remove the cards from the list and hide the card's symbol
+            hideCards();
         }
     }
 });
@@ -96,8 +100,20 @@ function addMatchedClass(matched){
     let matchedCards = document.querySelectorAll('.' + matched);
     // get the parent card element of matched card
     // add a class of matched
-    for (card of matchedCards) {
+    for (let card of matchedCards) {
         let matchedParent = card.closest('.card');
         matchedParent.classList.add("matched");
+    }
+}
+
+function hideCards() {
+    // clear the card list
+    shownCardsList = [];
+    // remove flipped class from unmatching cards
+    var allFlippedCards = document.querySelectorAll('.flipped');
+    for (let card of allFlippedCards) {
+        if (!card.classList.contains('matched')) {
+            card.classList.remove("flipped");
+        }
     }
 }
