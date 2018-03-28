@@ -15,9 +15,9 @@ var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube"
 var shuffledCards = shuffle(cards);
 
 // build the deck
-var allTheCards = shuffledCards.map((card) => `
+var allTheCards = shuffledCards.map((card, index) => `
 <section class="container">
-    <div class="card">
+    <div class="card" id="${index}-${card}">
         <figure class="front"></figure>
         <figure class="back">
             <i class="fa ${card}"></i>
@@ -56,13 +56,30 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+var shownCardsList = [];
+var regex = /\d+-/;
+
 // set up the event listener for a card. If a card is clicked:
 deck.addEventListener('click', function (e) {
     var currentCard = e.target;
+    // TODO: check that what we clicked was actually a card
+
     // display the card's symbol
     showCard(currentCard);
+    // add the card to a *list* of "open" cards
+    addShownCard(currentCard);
 });
 
 function showCard(card) {
     card.parentElement.classList.add("flipped");
+}
+
+function addShownCard(card) {
+    // get card id
+    var cardId = card.parentElement.id;
+    // extract card name from id
+    var cardName = cardId.replace(regex, "");
+    // add card name to shown cards list
+    shownCardsList.push(cardName);
+    console.log(shownCardsList);
 }
