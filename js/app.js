@@ -29,12 +29,6 @@ var allTheCards = shuffledCards.map((card) => `
 // append shuffled deck to html
 deck.innerHTML = allTheCards;
 
-// Flip cards on click
-deck.addEventListener('click', function(e) {
-    var currentCard = e.target;
-    currentCard.parentElement.classList.toggle("flipped");
-});
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -61,3 +55,9 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// set up the event listener for a card.
+deck.addEventListener('click', function (e) {
+    var currentCard = e.target;
+    currentCard.parentElement.classList.toggle("flipped");
+});
