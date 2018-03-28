@@ -104,6 +104,8 @@ function addMatchedClass(matched){
         let matchedParent = card.closest('.card');
         matchedParent.classList.add("matched");
     }
+    // clear the card list
+    shownCardsList = [];
 }
 
 function hideCards() {
