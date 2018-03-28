@@ -56,8 +56,13 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// set up the event listener for a card.
+// set up the event listener for a card. If a card is clicked:
 deck.addEventListener('click', function (e) {
     var currentCard = e.target;
-    currentCard.parentElement.classList.toggle("flipped");
+    // display the card's symbol
+    showCard(currentCard);
 });
+
+function showCard(card) {
+    card.parentElement.classList.add("flipped");
+}
