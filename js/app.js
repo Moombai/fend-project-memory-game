@@ -88,6 +88,7 @@ deck.addEventListener('click', function (e) {
                 hideCards();
             }
         }
+        updateStarDisplay();
         // if all cards have matched, display a message with the final score
         // TODO: Implement modal (for when all the cards match)
         checkAllCardsMatch();
@@ -160,5 +161,15 @@ function checkAllCardsMatch() {
     var matchingCards = document.querySelectorAll('.matched');
     if (matchingCards.length === 16) {
         console.log("All the cards match!");
+    }
+}
+
+function updateStarDisplay() {
+    var moveCount = player.moves;
+    var starDisplay = document.querySelector('.stars');
+
+    if (moveCount === 30 || moveCount === 55 ) {
+        var starElement = document.querySelector('.stars li');
+        starDisplay.removeChild(starElement);
     }
 }
