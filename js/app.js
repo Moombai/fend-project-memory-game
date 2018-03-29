@@ -84,6 +84,9 @@ deck.addEventListener('click', function (e) {
                 hideCards();
             }
         }
+        // if all cards have matched, display a message with the final score
+        // TODO: Implement modal (for when all the cards match)
+        checkAllCardsMatch();
     }
 });
 
@@ -146,5 +149,12 @@ function updateMoveCounter() {
         moveCounter.textContent = moves + " move";
     } else {
         moveCounter.textContent = moves + " moves";
+    }
+}
+
+function checkAllCardsMatch() {
+    var matchingCards = document.querySelectorAll('.matched');
+    if (matchingCards.length === 16) {
+        console.log("All the cards match!");
     }
 }
