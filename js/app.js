@@ -3,7 +3,7 @@
  */
 var deck = document.querySelector('.deck');
 var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
-
+var player = { moves: 0, makeMove: function() { player.moves += 1 }  };
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -69,6 +69,9 @@ deck.addEventListener('click', function (e) {
         showCard(currentCard);
         // add the card to a *list* of "open" cards
         addShownCard(currentCard);
+        // increment the move counter and display it on the page
+        updateMoveCounter();
+
         // if the shownCardsList contains two cards
         if (shownCardsList.length > 1) {
             // check to see if the two cards match
@@ -132,5 +135,16 @@ function cardCheck(element) {
     } else {
         console.log("Not a valid card");
         return false;
+    }
+}
+
+function updateMoveCounter() {
+    var moveCounter = document.getElementById('moves');
+    player.makeMove();
+    var moves = player.moves;
+    if (moves === 1) {
+        moveCounter.textContent = moves + " move";
+    } else {
+        moveCounter.textContent = moves + " moves";
     }
 }
