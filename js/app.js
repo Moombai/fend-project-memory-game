@@ -4,6 +4,10 @@
 var deck = document.querySelector('.deck');
 var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
 var player = { moves: 0, makeMove: function() { player.moves += 1 }  };
+
+// Reset the game
+var restartButton = document.getElementById("restart");
+restartButton.addEventListener("click", function () { window.location.reload(); })
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
