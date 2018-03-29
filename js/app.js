@@ -61,23 +61,25 @@ var regex = /\d+-/;
 
 // set up the event listener for a card. If a card is clicked:
 deck.addEventListener('click', function (e) {
-    var currentCard = e.target;
-    // TODO: check that what we clicked was actually a card & does not contain matched class
-
-    // display the card's symbol
-    showCard(currentCard);
-    // add the card to a *list* of "open" cards
-    addShownCard(currentCard);
-    // if the shownCardsList contains two cards
-    if (shownCardsList.length > 1) {
-        // check to see if the two cards match
-        if (shownCardsList[0] === shownCardsList[1]) {
-        // if the cards do match, lock the cards in the open position
-            addMatchedClass(shownCardsList[0]);
-        } else {
-            console.log("cards do not match!");
-            // if the cards do not match, remove the cards from the list and hide the card's symbol
-            hideCards();
+    // script will run if element clicked is a valid card
+    var isValidCard = cardCheck(e.target);
+    if(isValidCard) {
+        var currentCard = e.target;
+        // display the card's symbol
+        showCard(currentCard);
+        // add the card to a *list* of "open" cards
+        addShownCard(currentCard);
+        // if the shownCardsList contains two cards
+        if (shownCardsList.length > 1) {
+            // check to see if the two cards match
+            if (shownCardsList[0] === shownCardsList[1]) {
+            // if the cards do match, lock the cards in the open position
+                addMatchedClass(shownCardsList[0]);
+            } else {
+                console.log("cards do not match!");
+                // if the cards do not match, remove the cards from the list and hide the card's symbol
+                hideCards();
+            }
         }
     }
 });
@@ -119,5 +121,16 @@ function hideCards() {
                 card.classList.remove("flipped");
             }, 1000);
         }
+    }
+}
+
+function cardCheck(element) {
+    // Check if element clicked is a card and hasn't already been flipped
+    if (element.closest('.card') && (!element.closest('.card').classList.contains('flipped'))) {
+        console.log("Is a valid card");
+        return true;
+    } else {
+        console.log("Not a valid card");
+        return false;
     }
 }
