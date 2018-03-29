@@ -1,20 +1,17 @@
 # Memory Game Project
 
+Memory Game is an interactive card game where the player must turn over the correct cards to make a pair. The player wins the game by matching all the cards in the deck. This project is written in HTML/CSS and JavaScript and is required for completion of Udacity's Frontend Nanodegree.
+
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Dependencies](#dependencies)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This game can be initialized by cloning and opening the index.html page in your browser.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Dependencies
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+* The project uses features from ES2015 which are supported in mordern browsers.
+* [MomentJS](https://momentjs.com/) has been used to manage time in the project
