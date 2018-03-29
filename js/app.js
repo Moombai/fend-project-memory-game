@@ -3,7 +3,7 @@
  */
 var deck = document.querySelector('.deck');
 var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
-var player = { moves: 0, makeMove: function() { player.moves += 1 }  };
+var player = { moves: 0, makeMove: function() { player.moves += 1 }, stopwatch: "off"  };
 
 // Reset the game
 var restartButton = document.getElementById("restart");
@@ -68,6 +68,8 @@ deck.addEventListener('click', function (e) {
     // script will run if element clicked is a valid card
     var isValidCard = cardCheck(e.target);
     if(isValidCard) {
+        // start the clock!
+        startTimer();
         var currentCard = e.target;
         // display the card's symbol
         showCard(currentCard);
@@ -171,5 +173,20 @@ function updateStarDisplay() {
     if (moveCount === 30 || moveCount === 55 ) {
         var starElement = document.querySelector('.stars li');
         starDisplay.removeChild(starElement);
+    }
+}
+
+function startTimer() {
+    var clockStarted = player.stopwatch;
+    // ensure that timer is only initialized once
+    if (clockStarted === "off") {
+        player.stopwatch = "on";
+        var gameTimer = document.querySelector('.timer span');
+        var start = moment();
+
+        setInterval(function () {
+            var timeSinceStart = moment() - start;
+            gameTimer.textContent = moment(timeSinceStart).format('mm:ss');
+        }, 1000);
     }
 }
