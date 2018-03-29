@@ -114,6 +114,7 @@ h1 {
 }
 
 /** Custom Card CSS **/
+/* Based on ideas found here: https://desandro.github.io/3dtransforms/docs/card-flip.html */
 .card .back {
     font-size: 33px;
     background: #02b3e4;
