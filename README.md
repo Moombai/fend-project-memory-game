@@ -1,6 +1,6 @@
 # Memory Game Project
 
-Memory Game is an interactive card game where the player must turn over the correct cards to make a pair. The player wins the game by matching all the cards in the deck. This project is written in HTML/CSS and JavaScript and is required for completion of Udacity's Frontend Nanodegree.
+Memory is an interactive card game where the player must turn over the correct cards to make a pair. The player wins the game by matching all the cards in the deck. The project is written in HTML/CSS and JavaScript and is required for completion of Udacity's Frontend Nanodegree.
 
 ## Table of Contents
 
@@ -9,9 +9,9 @@ Memory Game is an interactive card game where the player must turn over the corr
 
 ## Instructions
 
-This game can be initialized by cloning and opening the index.html page in your browser.
+This game can be played by cloning the project and opening the index.html page in your browser.
 
 ## Dependencies
 
-* The project uses features from ES2015 which are supported in mordern browsers.
+* The project uses features from ES2015 which are supported in mordern browsers
 * [MomentJS](https://momentjs.com/) has been used to manage time in the project
