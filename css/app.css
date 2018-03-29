@@ -140,3 +140,7 @@ h1 {
 .card.flipped {
   transform: rotateY( 180deg );
 }
+
+.timer span {
+  font-family: Lucida Console, Courier, monospace;
+}
