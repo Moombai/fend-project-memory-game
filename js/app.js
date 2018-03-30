@@ -6,7 +6,8 @@ var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube"
 var player = {
     moves: 0,
     makeMove: function() { player.moves += 1 },
-    stopwatch: "off"
+    stopwatch: "off",
+    timePlayed: 0
 };
 
 // Reset the game
@@ -166,8 +167,9 @@ function updateMoveCounter() {
 function checkAllCardsMatch() {
     var matchingCards = document.querySelectorAll('.matched');
     if (matchingCards.length === 16) {
+        var modalTime = document.getElementById('modal-time');
+        modalTime.innerHTML =  player.timePlayed;
         modal.style.display = "block";
-        console.log("All the cards match!");
     }
 }
 
@@ -190,8 +192,9 @@ function startTimer() {
         var start = moment();
 
         setInterval(function () {
-            var timeSinceStart = moment() - start;
-            gameTimer.textContent = moment(timeSinceStart).format('mm:ss');
+            var timeSinceStart = moment(moment() - start).format('mm:ss');
+            gameTimer.textContent = timeSinceStart;
+            player.timePlayed = timeSinceStart;
         }, 1000);
     }
 }
