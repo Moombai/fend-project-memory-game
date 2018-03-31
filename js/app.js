@@ -12,6 +12,7 @@ var player = {
 
 // Reset the game
 var restartButton = document.getElementById("restart");
+let renderTime = 0;
 restartButton.addEventListener("click", function () { window.location.reload(); })
 /*
  * Display the cards on the page
@@ -170,6 +171,7 @@ function checkAllCardsMatch() {
         var modalTime = document.getElementById('modal-time');
         modalTime.innerHTML =  player.timePlayed;
         modal.style.display = "block";
+        clearInterval(renderTime);
     }
 }
 
@@ -194,8 +196,8 @@ function startTimer() {
         player.stopwatch = "on";
         var gameTimer = document.querySelector('.timer span');
         var start = moment();
-
-        setInterval(function () {
+        // update global variable renderTime
+        renderTime = setInterval(function () {
             var timeSinceStart = moment(moment() - start).format('mm:ss');
             gameTimer.textContent = timeSinceStart;
             player.timePlayed = timeSinceStart;
