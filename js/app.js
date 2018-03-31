@@ -96,7 +96,6 @@ deck.addEventListener('click', function (e) {
             // if the cards do match, lock the cards in the open position
                 addMatchedClass(shownCardsList[0]);
             } else {
-                console.log("cards do not match!");
                 // if the cards do not match, remove the cards from the list and hide the card's symbol
                 hideCards();
             }
@@ -118,7 +117,6 @@ function addShownCard(card) {
     const cardName = cardId.replace(regex, '');
     // add card name to shown cards list
     shownCardsList.push(cardName);
-    console.log(shownCardsList);
 }
 
 function addMatchedClass(matched){
@@ -150,10 +148,8 @@ function hideCards() {
 function cardCheck(element) {
     // Check if element clicked is a card and hasn't already been flipped
     if (element.closest('.card') && (!element.closest('.card').classList.contains('flipped'))) {
-        console.log("Is a valid card");
         return true;
     } else {
-        console.log("Not a valid card");
         return false;
     }
 }
