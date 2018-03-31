@@ -119,6 +119,9 @@ h1 {
     font-size: 33px;
     background: #02b3e4;
     transform: rotateY( 180deg );
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card .front {
