@@ -4,29 +4,23 @@ const restartButton = document.getElementById('restart');
 const modal = document.getElementById('myModal');
 const modalSpan = document.getElementById("close");
 
-const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle'];
+// Set variables to track time played, cards revealed and moves made
+let renderTime;
+let shownCardsList = [];
+const regex = /\d+-/;
 const player = {
     moves: 0,
-    makeMove: function() { player.moves += 1 },
+    makeMove: function () { player.moves += 1 },
     stopwatch: 'off',
     timePlayed: 0
 };
 
-// Reset the game
-let renderTime = 0;
-restartButton.addEventListener('click', function () { window.location.reload(); })
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// shuffle the cards
+// Shuffle the cards
+const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle'];
 const shuffledCards = shuffle(cards);
 
-// build the deck
-const allTheCards = shuffledCards.map((card, index) => `
+// Display shuffled cards
+const renderCardHTML = shuffledCards.map((card, index) => `
 <section class="container">
     <div class="card" id="${index}-${card}">
         <figure class="front"></figure>
@@ -36,9 +30,21 @@ const allTheCards = shuffledCards.map((card, index) => `
     </div>
 </section>
 `).join(' ');
+deck.innerHTML = renderCardHTML;
 
-// append shuffled deck to html
-deck.innerHTML = allTheCards;
+// restart game
+restartButton.addEventListener('click', function () { window.location.reload(); })
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
+
+// shuffle the cards
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -66,9 +72,6 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-let shownCardsList = [];
-const regex = /\d+-/;
 
 // set up the event listener for a card. If a card is clicked:
 deck.addEventListener('click', function (e) {
