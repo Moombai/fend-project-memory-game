@@ -32,8 +32,23 @@ const renderCardHTML = shuffledCards.map((card, index) => `
 `).join(' ');
 deck.innerHTML = renderCardHTML;
 
+/** Global Event Listeners **/
 // restart game
 restartButton.addEventListener('click', function () { window.location.reload(); })
+
+// When the user clicks on <span> (x), close the modal
+modalSpan.addEventListener('click', function () {
+    modal.style.display = 'none';
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', function (event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -208,15 +223,3 @@ function startTimer() {
         }, 1000);
     }
 }
-
-// When the user clicks on <span> (x), close the modal
-modalSpan.addEventListener('click', function(){
-    modal.style.display = 'none';
-});
-
-// When the user clicks anywhere outside of the modal, close it
-window.addEventListener('click', function(event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-});
