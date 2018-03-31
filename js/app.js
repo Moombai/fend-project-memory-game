@@ -48,19 +48,6 @@ window.addEventListener('click', function (event) {
     }
 });
 
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// shuffle the cards
-
-
-
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -75,7 +62,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -117,7 +103,6 @@ deck.addEventListener('click', function (e) {
         }
         updateStarDisplay();
         // if all cards have matched, display a message with the final score
-        // TODO: Implement modal (for when all the cards match)
         checkAllCardsMatch();
     }
 });
