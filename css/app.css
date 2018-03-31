@@ -120,10 +120,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
 }
 
 .card .front {
     background: #2e3d49;
+    border-radius: 8px;
 }
 
 .card figure {
