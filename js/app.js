@@ -2,18 +2,18 @@
  * Create a list that holds all of your cards
  */
 const deck = document.querySelector('.deck');
-const cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
+const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle'];
 const player = {
     moves: 0,
     makeMove: function() { player.moves += 1 },
-    stopwatch: "off",
+    stopwatch: 'off',
     timePlayed: 0
 };
 
 // Reset the game
-const restartButton = document.getElementById("restart");
+const restartButton = document.getElementById('restart');
 let renderTime = 0;
-restartButton.addEventListener("click", function () { window.location.reload(); })
+restartButton.addEventListener('click', function () { window.location.reload(); })
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -34,7 +34,7 @@ const allTheCards = shuffledCards.map((card, index) => `
         </figure>
     </div>
 </section>
-`).join(" ");
+`).join(' ');
 
 // append shuffled deck to html
 deck.innerHTML = allTheCards;
@@ -104,14 +104,14 @@ deck.addEventListener('click', function (e) {
 });
 
 function showCard(card) {
-    card.parentElement.classList.add("flipped");
+    card.parentElement.classList.add('flipped');
 }
 
 function addShownCard(card) {
     // get card id
     const cardId = card.parentElement.id;
     // extract card name from id
-    const cardName = cardId.replace(regex, "");
+    const cardName = cardId.replace(regex, '');
     // add card name to shown cards list
     shownCardsList.push(cardName);
     console.log(shownCardsList);
@@ -123,7 +123,7 @@ function addMatchedClass(matched){
     // add a class of matched
     for (let card of matchedCards) {
         let matchedParent = card.closest('.card');
-        matchedParent.classList.add("matched");
+        matchedParent.classList.add('matched');
     }
     // clear the card list
     shownCardsList = [];
@@ -137,7 +137,7 @@ function hideCards() {
     for (let card of allFlippedCards) {
         if (!card.classList.contains('matched')) {
             setTimeout(function() {
-                card.classList.remove("flipped");
+                card.classList.remove('flipped');
             }, 1000);
         }
     }
@@ -159,9 +159,9 @@ function updateMoveCounter() {
     player.makeMove();
     const moves = player.moves;
     if (moves === 1) {
-        moveCounter.textContent = moves + " move";
+        moveCounter.textContent = moves + ' move';
     } else {
-        moveCounter.textContent = moves + " moves";
+        moveCounter.textContent = moves + ' moves';
     }
 }
 
@@ -170,7 +170,7 @@ function checkAllCardsMatch() {
     if (matchingCards.length === 16) {
         const modalTime = document.getElementById('modal-time');
         modalTime.innerHTML =  player.timePlayed;
-        modal.style.display = "block";
+        modal.style.display = 'block';
         clearInterval(renderTime);
     }
 }
@@ -192,8 +192,8 @@ function updateStarDisplay() {
 function startTimer() {
     const clockStarted = player.stopwatch;
     // ensure that timer is only initialized once
-    if (clockStarted === "off") {
-        player.stopwatch = "on";
+    if (clockStarted === 'off') {
+        player.stopwatch = 'on';
         const gameTimer = document.querySelector('.timer span');
         const start = moment();
         // update global variable renderTime
@@ -211,11 +211,11 @@ const span = document.getElementById("close");
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
-    modal.style.display = "none";
+    modal.style.display = 'none';
 }
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        modal.style.display = 'none';
     }
 }
