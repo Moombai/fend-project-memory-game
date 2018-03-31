@@ -180,6 +180,10 @@ function updateStarDisplay() {
     if (moveCount === 30 || moveCount === 55 ) {
         var starElement = document.querySelector('.stars li');
         starDisplay.removeChild(starElement);
+        // update display for modal stars
+        var modalStars = document.querySelector('.modal-stars');
+        var modalStarsChild = document.querySelector('.modal-stars li');
+        modalStars.removeChild(modalStarsChild);
     }
 }
 
