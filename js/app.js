@@ -1,9 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-var deck = document.querySelector('.deck');
-var cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
-var player = {
+const deck = document.querySelector('.deck');
+const cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bomb", "fa-bicycle"];
+const player = {
     moves: 0,
     makeMove: function() { player.moves += 1 },
     stopwatch: "off",
@@ -11,7 +11,7 @@ var player = {
 };
 
 // Reset the game
-var restartButton = document.getElementById("restart");
+const restartButton = document.getElementById("restart");
 let renderTime = 0;
 restartButton.addEventListener("click", function () { window.location.reload(); })
 /*
@@ -22,10 +22,10 @@ restartButton.addEventListener("click", function () { window.location.reload(); 
  */
 
 // shuffle the cards
-var shuffledCards = shuffle(cards);
+const shuffledCards = shuffle(cards);
 
 // build the deck
-var allTheCards = shuffledCards.map((card, index) => `
+const allTheCards = shuffledCards.map((card, index) => `
 <section class="container">
     <div class="card" id="${index}-${card}">
         <figure class="front"></figure>
@@ -41,7 +41,7 @@ deck.innerHTML = allTheCards;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -66,17 +66,17 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-var shownCardsList = [];
-var regex = /\d+-/;
+let shownCardsList = [];
+const regex = /\d+-/;
 
 // set up the event listener for a card. If a card is clicked:
 deck.addEventListener('click', function (e) {
     // script will run if element clicked is a valid card
-    var isValidCard = cardCheck(e.target);
+    const isValidCard = cardCheck(e.target);
     if(isValidCard) {
         // start the clock!
         startTimer();
-        var currentCard = e.target;
+        const currentCard = e.target;
         // display the card's symbol
         showCard(currentCard);
         // add the card to a *list* of "open" cards
@@ -109,9 +109,9 @@ function showCard(card) {
 
 function addShownCard(card) {
     // get card id
-    var cardId = card.parentElement.id;
+    const cardId = card.parentElement.id;
     // extract card name from id
-    var cardName = cardId.replace(regex, "");
+    const cardName = cardId.replace(regex, "");
     // add card name to shown cards list
     shownCardsList.push(cardName);
     console.log(shownCardsList);
@@ -133,7 +133,7 @@ function hideCards() {
     // clear the card list
     shownCardsList = [];
     // remove flipped class from unmatching cards
-    var allFlippedCards = document.querySelectorAll('.flipped');
+    const allFlippedCards = document.querySelectorAll('.flipped');
     for (let card of allFlippedCards) {
         if (!card.classList.contains('matched')) {
             setTimeout(function() {
@@ -155,9 +155,9 @@ function cardCheck(element) {
 }
 
 function updateMoveCounter() {
-    var moveCounter = document.getElementById('moves');
+    const moveCounter = document.getElementById('moves');
     player.makeMove();
-    var moves = player.moves;
+    const moves = player.moves;
     if (moves === 1) {
         moveCounter.textContent = moves + " move";
     } else {
@@ -166,9 +166,9 @@ function updateMoveCounter() {
 }
 
 function checkAllCardsMatch() {
-    var matchingCards = document.querySelectorAll('.matched');
+    const matchingCards = document.querySelectorAll('.matched');
     if (matchingCards.length === 16) {
-        var modalTime = document.getElementById('modal-time');
+        const modalTime = document.getElementById('modal-time');
         modalTime.innerHTML =  player.timePlayed;
         modal.style.display = "block";
         clearInterval(renderTime);
@@ -176,29 +176,29 @@ function checkAllCardsMatch() {
 }
 
 function updateStarDisplay() {
-    var moveCount = player.moves;
-    var starDisplay = document.querySelector('.stars');
+    const moveCount = player.moves;
+    const starDisplay = document.querySelector('.stars');
 
     if (moveCount === 30 || moveCount === 55 ) {
-        var starElement = document.querySelector('.stars li');
+        const starElement = document.querySelector('.stars li');
         starDisplay.removeChild(starElement);
         // update display for modal stars
-        var modalStars = document.querySelector('.modal-stars');
-        var modalStarsChild = document.querySelector('.modal-stars li');
+        const modalStars = document.querySelector('.modal-stars');
+        const modalStarsChild = document.querySelector('.modal-stars li');
         modalStars.removeChild(modalStarsChild);
     }
 }
 
 function startTimer() {
-    var clockStarted = player.stopwatch;
+    const clockStarted = player.stopwatch;
     // ensure that timer is only initialized once
     if (clockStarted === "off") {
         player.stopwatch = "on";
-        var gameTimer = document.querySelector('.timer span');
-        var start = moment();
+        const gameTimer = document.querySelector('.timer span');
+        const start = moment();
         // update global variable renderTime
         renderTime = setInterval(function () {
-            var timeSinceStart = moment(moment() - start).format('mm:ss');
+            const timeSinceStart = moment(moment() - start).format('mm:ss');
             gameTimer.textContent = timeSinceStart;
             player.timePlayed = timeSinceStart;
         }, 1000);
@@ -206,8 +206,8 @@ function startTimer() {
 }
 
 /** Modal JS **/
-var modal = document.getElementById('myModal');
-var span = document.getElementById("close");
+const modal = document.getElementById('myModal');
+const span = document.getElementById("close");
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
