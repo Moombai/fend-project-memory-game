@@ -1,7 +1,9 @@
-/*
- * Create a list that holds all of your cards
- */
+// Select DOM elements
 const deck = document.querySelector('.deck');
+const restartButton = document.getElementById('restart');
+const modal = document.getElementById('myModal');
+const modalSpan = document.getElementById("close");
+
 const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bomb', 'fa-bicycle'];
 const player = {
     moves: 0,
@@ -11,7 +13,6 @@ const player = {
 };
 
 // Reset the game
-const restartButton = document.getElementById('restart');
 let renderTime = 0;
 restartButton.addEventListener('click', function () { window.location.reload(); })
 /*
@@ -205,12 +206,8 @@ function startTimer() {
     }
 }
 
-/** Modal JS **/
-const modal = document.getElementById('myModal');
-const span = document.getElementById("close");
-
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+modalSpan.onclick = function () {
     modal.style.display = 'none';
 }
 // When the user clicks anywhere outside of the modal, close it
