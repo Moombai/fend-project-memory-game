@@ -12,7 +12,9 @@ const player = {
     moves: 0,
     makeMove: function () { player.moves += 1 },
     stopwatch: 'off',
-    timePlayed: 0
+    timePlayed: 0,
+    rating: 3,
+    updateRating: function() { player.rating -= 1 }
 };
 
 // Shuffle the cards
@@ -155,7 +157,11 @@ function checkAllCardsMatch() {
     const matchingCards = document.querySelectorAll('.matched');
     if (matchingCards.length === 16) {
         const modalTime = document.getElementById('modal-time');
-        modalTime.innerHTML =  player.timePlayed;
+        const modalMoves = document.getElementById('modal-moves');
+        const modalStarRating = document.getElementById('modal-star-rating');
+        modalTime.textContent =  player.timePlayed;
+        modalMoves.textContent = player.moves;
+        modalStarRating.innerHTML = `${player.rating} ${player.rating > 1 ? 'stars' : 'star' }`;
         modal.style.display = 'block';
         clearInterval(renderTime);
     }
@@ -172,6 +178,8 @@ function updateStarDisplay() {
         const modalStars = document.querySelector('.modal-stars');
         const modalStarsChild = document.querySelector('.modal-stars li');
         modalStars.removeChild(modalStarsChild);
+        // update player rating
+        player.updateRating();
     }
 }
 
