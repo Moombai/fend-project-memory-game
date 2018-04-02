@@ -1,3 +1,4 @@
+"use strict";
 // Select DOM elements
 const deck = document.querySelector('.deck');
 const restartButton = document.getElementById('restart');
